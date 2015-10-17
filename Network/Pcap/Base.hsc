@@ -689,7 +689,7 @@ statistics hdl =
                         }
 
 foreign import ccall unsafe pcap_stats
-    :: Ptr PcapTag -> Ptr Statistics -> IO Int
+    :: Ptr PcapTag -> Ptr Statistics -> IO CInt
 
 -- | Version of the library.  The returned pair consists of the major
 -- and minor version numbers.
