@@ -9,7 +9,9 @@ author:          Bryan O'Sullivan, Nick Burlett, Dominic Steinitz, Gregory Wrigh
 homepage:        https://github.com/bos/pcap
 bug-reports:     https://github.com/bos/pcap/issues
 category:        Network
-cabal-version:   >= 1.6
+-- Test-Suite dependency on a library itself requires cabal version 1.8
+-- Default-Language field requires 1.10
+cabal-version:   >= 1.8
 extra-source-files:
                  configure.ac configure include/pcapconfig.h.in
                  pcap.buildinfo.in README.markdown
@@ -29,6 +31,16 @@ library
   include-dirs:    include
   includes:        pcapconfig.h pcap.h
   install-includes: pcapconfig.h
+
+Test-Suite spec
+  Type:                 exitcode-stdio-1.0
+  Default-Language:     Haskell2010
+  Hs-Source-Dirs:       test
+  Ghc-Options:          -Wall
+  Main-Is:              PcapSpec.hs
+  Build-Depends:        base
+                      , hspec >= 2.2
+                      , pcap
 
 source-repository head
   type:     git
